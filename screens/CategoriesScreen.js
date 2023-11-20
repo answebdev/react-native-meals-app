@@ -3,22 +3,30 @@ import CategoryGridTile from '../components/CategoryGridTile';
 
 import { CATEGORIES } from '../data/dummy-data';
 
-// Optional:
-// We can also do this down in the JSX in the FlatList,
-// but we're doing this here to keep it lean.
-function renderCategoryITem(itemData) {
-    return (
-        <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
-    );
-}
-
 // function CategoriesScreen() {
-const CategoriesScreen = () => {
+const CategoriesScreen = ({ navigation }) => {
+    // Optional:
+    // We can also do this down in the JSX in the FlatList,
+    // but we're doing this here to keep it lean.
+    function renderCategoryItem(itemData) {
+        function pressHandler() {
+            navigation.navigate('MealsOverview');
+        }
+
+        return (
+            <CategoryGridTile
+                title={itemData.item.title}
+                color={itemData.item.color}
+                onPress={pressHandler}
+            />
+        );
+    }
+
     return (
         <FlatList
             data={CATEGORIES}
             keyExtractor={(item) => item.id}
-            renderItem={renderCategoryITem}
+            renderItem={renderCategoryItem}
             numColumns={2}
         />
     );
