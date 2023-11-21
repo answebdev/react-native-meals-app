@@ -10,7 +10,9 @@ const CategoriesScreen = ({ navigation }) => {
     // but we're doing this here to keep it lean.
     function renderCategoryItem(itemData) {
         function pressHandler() {
-            navigation.navigate('MealsOverview');
+            navigation.navigate('MealsOverview', {
+                categoryId: itemData.item.id
+            });
         }
 
         return (
